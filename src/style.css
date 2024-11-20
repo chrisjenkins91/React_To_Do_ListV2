@@ -1,25 +1,152 @@
-.container-fluid{
-    height: 100vh;
+/* Header container styles */
+.header-container {
+    position: relative; /* Ensures child elements can be absolutely positioned relative to this container */
 }
 
-.main{
-    background-color: #023047;
+/* Header title styles */
+.header h1 {
+    color: #fb8500;
+    font-family: 'Oswald', 'sans-serif';
+    font-size: 4rem;
+    position: absolute; /* Positions the h1 based on the header-container */
+    margin-top: 2rem;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centers the element both horizontally and vertically */
+    text-wrap: nowrap; /* Prevents text from wrapping to the next line */
+    text-shadow: 1px 3px 0 #219EBC, 1px 8px 5px #515151; /* Adds a layered shadow effect to the text */
 }
 
-.task-container{
+/* Transparent stroke effect for the first h1 */
+.header h1:nth-child(1) {
+    color: transparent; /* Makes the text itself invisible */
+    -webkit-text-stroke: 2px #8ECAE6; /* Creates an outline for the text */
+}
+
+/* Animation for the second h1 */
+.header h1:nth-child(2) {
+    color: #FFB703;
+    animation: animate 4s ease-in-out infinite; /* Applies an infinite animation to the text */
+}
+
+/* Keyframe animation for clipping the h1 element */
+@keyframes animate {
+    0%,
+    100% {
+        clip-path: polygon(
+            0% 45%, 16% 44%, 33% 50%, 54% 60%, 
+            70% 61%, 84% 59%, 100% 52%, 100% 100%, 0% 100%
+        ); /* Clips the element to create a dynamic effect */
+    }
+
+    50% {
+        clip-path: polygon(
+            0% 60%, 15% 65%, 34% 66%, 51% 62%, 
+            67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%
+        );
+    }
+}
+
+/* Main section styles */
+.main {
+    background: linear-gradient(to bottom right, #219EBC 0%, #FFB703 100%, #023047 100%); /* Creates a gradient background */
+    height: 100vh; /* Ensures the main section fills the viewport height */
+    padding-top: 10rem; /* Adds spacing at the top */
+}
+
+/* Input field button styles */
+.input-field {
+    position: sticky; /* Enables sticky behavior */
+    top: 0; /* Stick the element at the top of the scrollable area */
+    z-index: 10; /* Ensures it appears above other elements */
+    padding: 1rem; /* Optional: Adds some spacing */
+    
+    
+
+}
+
+
+.input-field button {
+    color: white;
+    background-color: #FFB703;
+
+}
+
+
+/* Task container styles */
+.task-container {
+    margin-top: 1rem;
+    padding: 2rem;
+    margin-bottom: 10rem;
     border: 2px solid #8ECAE6;
     border-radius: 20px;
-    padding: 4rem;
-    background: #FB8500;
+    background: radial-gradient(circle farthest-corner at bottom right, #219EBC 0%, #FFB703 100%);
+    box-shadow: 0 60px 80px rgba(0, 0, 0, 0.60), 0 45px 26px rgba(0, 0, 0, 0.14);
+    height: 50vh; /* Limits the container height */
+    max-height: 50vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative; /* Ensure sticky input is relative to this container */
 }
 
-.header h1{
-    color: #FB8500;
-    font-family: 'Oswald', 'sans-serif';
-    font-size: 2.8rem;
-    margin: 3rem;
+/* Custom scrollbar styles */
+.task-container::-webkit-scrollbar {
+    width: 8px; /* Sets the scrollbar width */
 }
 
-.taskItems h3, .taskItems h4{
-    font-size: 1.3rem;
+.task-container::-webkit-scrollbar-thumb {
+    color: #FFB703; /* Colors the scrollbar thumb */
+    border-radius: 4px; /* Rounds the scrollbar thumb */
+}
+
+.task-container::-webkit-scrollbar-thumb:hover {
+    background-color: #FB8500; /* Changes the thumb color on hover */
+}
+
+/* Task paragraph styles */
+.task-container p {
+    font-size: large;
+    color: white;
+    font-family: 'Poppins';
+}
+
+/* Task item styles */
+.taskItems {
+    background-color: #023047ba; /* Semi-transparent background */
+    margin-bottom: 1rem; /* Adds space below each task item */
+    padding: 5px 2px; /* Adds padding to the top and bottom */
+    border: 2px solid #FB8500;
+    border-radius: 10px; /* Rounds the task item's corners */
+    box-shadow: 0 2px 1px rgba(82, 82, 82, 0.09), 
+                0 4px 2px rgba(99, 99, 99, 0.714), 
+                0 8px 4px rgba(93, 93, 93, 0.09), 
+                0 16px 8px rgba(96, 96, 96, 0.328), 
+                0 32px 16px rgba(119, 118, 118, 0.09); /* Multi-layer shadow */
+    transition: transform 0.5s ease-out, box-shadow 0.2s ease-in; /* Smooth animation for hover effects */
+}
+
+/* Hover effects for task items */
+.taskItems:hover {
+    box-shadow: 0 0 15px 5px #FB8500, 0 0 15px 7px #FFB703; /* Glow effect */
+    transform: scale(1.03); /* Slightly enlarges the task item */
+    transition: transform 0.5s ease, box-shadow 0.5s ease; /* Smooth transition effects */
+}
+
+/* Task heading styles */
+.taskItems h3, .taskItems h4 {
+    color: white;
+    font-family: 'Poppins';
+    font-size: medium;
+}
+
+/* Styles for completed tasks */
+.done h3, .done h4 {
+    text-decoration: line-through; /* Strikes through the text */
+    text-decoration-color: red; /* Sets the strike-through color */
+    text-decoration-thickness: 3px; /* Adjusts the strike-through thickness */
+}
+
+/* Styles for tasks not completed */
+.notDone h3, .notDone h4 {
+    text-decoration: none; /* Ensures no strike-through for incomplete tasks */
 }
